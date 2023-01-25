@@ -1,8 +1,6 @@
 import streamlit as st
 import pandas as pd
 
-st.set_page_config(initial_sidebar_state= "collapsed")
-
 #---------------------Setting up data-----------------------------
 @st.cache
 def get_data():    
