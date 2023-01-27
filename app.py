@@ -1,6 +1,14 @@
 import streamlit as st
 import pandas as pd
 
+st.set_page_config(page_title="IntelliNutritor", page_icon="icon.png", layout="wide")
+
+# This makes page look better, but it is unsafe
+# st.markdown('''<style>
+#             header {visibility: hidden;}
+#             footer {visibility: hidden;}
+#             .css-1vq4p4l.e1fqkh3o4 {margin-top: -75px;}''', unsafe_allow_html=True)
+
 #---------------------Setting up data-----------------------------
 @st.cache
 def get_data(str_data: str, num_data: str):    
@@ -11,13 +19,24 @@ def get_data(str_data: str, num_data: str):
     return df, df_num
 
 df, df_num = get_data("data\\for_app.csv", "data\\to_analyze.csv")
-to_show = ["Calories", "Total Fat", "Cholesterol", "Sugars", "Protein", "Carbohydrate"]
+to_show = ["Calories", "Total Fat", "Cholesterol", "Sugars", "Fiber", "Protein", "Carbohydrate"]
 
 if "fil_cols" not in st.session_state:
     st.session_state["fil_cols"] = []
     st.session_state["col_ranges"] = []
 
 #--------------------Streamlit page--------------------------------
+
+col = st.columns([3,1,1])
+
+with col[0]:
+    st.markdown("# IntelliNutritor 🥗")
+    st.markdown("🌮 Plan your diet intelligently 🍉☕")
+    st.markdown("Use the filters provided on the sidebar to find food items just right for you!")
+    st.markdown("##### Note:- Measurements are per 100g")
+    
+with col[2]:
+    st.image("icon.png", width=200)
 
 with st.sidebar:
     st.title("Choose your diet!")
@@ -45,7 +64,7 @@ with st.sidebar:
         with cols[1]:
             max_value = st.number_input("Max", min_value=0., max_value=100_000., step=0.01)
             
-        if st.button("\\+ Add/Change Filter", type="primary"):
+        if st.button("\\+ Add/Modify Filter", type="primary"):
             if fil_nut not in [default]+fil_cols and min_value<=max_value:
                 fil_cols.append(fil_nut)
                 col_ranges.append([min_value, max_value])
