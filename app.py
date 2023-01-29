@@ -18,7 +18,7 @@ def get_data(str_data: str, num_data: str):
     df_num = df_num.reset_index(drop=True)
     return df, df_num
 
-df, df_num = get_data("data\\for_app.csv", "data\\to_analyze.csv")
+df, df_num = get_data("data/for_app.csv", "data/to_analyze.csv")
 to_show = ["Calories", "Total Fat", "Cholesterol", "Sugars", "Fiber", "Protein", "Carbohydrate"]
 
 if "fil_cols" not in st.session_state:

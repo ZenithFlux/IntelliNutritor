@@ -74,6 +74,6 @@ def process_data(path: str):
     df = df.drop(index=0)
     return df, dataset
 
-p, q = process_data("dataset\\nutrition.csv")
-p.to_csv("data\\for_app.csv", index=False)
-q.to_csv("data\\to_analyze.csv", index=False)
+p, q = process_data("dataset/nutrition.csv")
+p.to_csv("data/for_app.csv", index=False)
+q.to_csv("data/to_analyze.csv", index=False)
